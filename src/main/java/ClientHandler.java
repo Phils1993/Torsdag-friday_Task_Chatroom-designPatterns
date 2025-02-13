@@ -37,6 +37,11 @@ public class ClientHandler implements Runnable, IObserver {
         String msg;
         try {
             while ((msg = in.readLine()) != null) {
+                String command = msg.split(" ")[0];
+                String restMessage = msg.substring(command.length() + 1);
+                MessageStrategyFactory.getStrategy(command).execute(restMessage, this);
+            }
+                /*
                 msg=filterMessage(msg);
                 //System.out.println(msg);
                 if (msg.startsWith("#JOIN")) {
@@ -88,10 +93,15 @@ public class ClientHandler implements Runnable, IObserver {
                 }
             }
 
+                 */
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
+
 
     @Override
     public void notify(String msg) {
@@ -139,8 +149,8 @@ public class ClientHandler implements Runnable, IObserver {
         return (ChatServerDemo) this.server;
     }
 
-    public void setName(String message) {
-        this.nickName = message;
+    public void setName(String nickName) {
+        this.nickName = nickName;
     }
     @Override
     public void broadCast(String msg) {
