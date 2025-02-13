@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientHandler implements Runnable, IObserver {
-    private Socket clientSocket;
-    private BufferedReader in;
-    private PrintWriter out;
-    private IOberserverable server;
+    private final Socket clientSocket;
+    private final BufferedReader in;
+    private final PrintWriter out;
+    private final IOberserverable server;
     private String nickName = null;
-    private List<String> bannedWords = new ArrayList<>();
+    private final List<String> bannedWords = new ArrayList<>();
 
     public ClientHandler(Socket clientSocket, IOberserverable server) throws IOException {
         this.clientSocket = clientSocket;
@@ -29,6 +29,7 @@ public class ClientHandler implements Runnable, IObserver {
     public String getNickName() {
         return nickName;
     }
+
 
 
     @Override
@@ -131,5 +132,17 @@ public class ClientHandler implements Runnable, IObserver {
             message = message.replaceAll("(?i)\\b" + bannedWord + "\\b", stars);
         }
         return message;
+    }
+
+
+    public ChatServerDemo getServer() {
+        return (ChatServerDemo) this.server;
+    }
+
+    public void setName(String message) {
+        this.nickName = message;
+    }
+    @Override
+    public void broadCast(String msg) {
     }
 }

@@ -4,4 +4,6 @@ public interface IObserver {
     void shutDownClient();
     void help();
     void addBadWordsToArray(String badWords);
+
+    void broadCast(String message);
 }
