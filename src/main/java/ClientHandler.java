@@ -37,8 +37,9 @@ public class ClientHandler implements Runnable, IObserver {
         String msg;
         try {
             while ((msg = in.readLine()) != null) {
+                String [] words = msg.split(" ");
                 String command = msg.split(" ")[0];
-                String restMessage = msg.substring(command.length());
+                String restMessage = words.length > 1? msg.substring(command.length() +1): msg;
                 MessageStrategyFactory.getStrategy(command).execute(restMessage, this);
             }
                 /*

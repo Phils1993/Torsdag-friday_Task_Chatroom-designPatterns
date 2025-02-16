@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 
 public class ChatServerDemo implements IOberserverable {
 
-    private final List<ClientHandler> clients = new ArrayList<>();
+    private static final List<ClientHandler> clients = new ArrayList<>();
     private ServerSocket serverSocket;
 
     private volatile boolean running = true;
@@ -22,6 +22,10 @@ public class ChatServerDemo implements IOberserverable {
             server = new ChatServerDemo();
         }
         return server;
+    }
+
+    public static List<ClientHandler> getClients() {
+        return clients;
     }
 
     public static void main(String[] args) {
