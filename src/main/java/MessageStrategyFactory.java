@@ -7,7 +7,8 @@ public class MessageStrategyFactory {
         strategies.put("#JOIN",new JoinStrategy());
         strategies.put("#MESSAGE",new MessageStrategy());
         strategies.put("#LEAVE",new LeaveStrategy());
-        strategies.put("#PRIVATE", new PrivateMessage());
+        strategies.put("#PRIVATE", new PrivateMsgStrategy());
+        strategies.put("#COLORMESSAGE" , new ColerStrategy());
     }
     public static  IMessageStrategy getStrategy(String strategy) {
         return strategies.getOrDefault(strategy, new IMessageStrategy() {

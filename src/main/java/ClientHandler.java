@@ -13,6 +13,7 @@ public class ClientHandler implements Runnable, IObserver {
     private final IOberserverable server;
     private String nickName = null;
     private final List<String> bannedWords = new ArrayList<>();
+    private final List<TextDecorator> decorators = new ArrayList<>();
 
     public ClientHandler(Socket clientSocket, IOberserverable server) throws IOException {
         this.clientSocket = clientSocket;
@@ -28,6 +29,10 @@ public class ClientHandler implements Runnable, IObserver {
 
     public String getNickName() {
         return nickName;
+    }
+
+    public void addDecorator(TextDecorator decorator) {
+        decorators.add(decorator);
     }
 
 
@@ -106,6 +111,9 @@ public class ClientHandler implements Runnable, IObserver {
 
     @Override
     public void notify(String msg) {
+        for (TextDecorator decorator : decorators) {
+            msg = decorator.decorate(msg);
+        }
         System.out.println(msg);
         out.println(msg);
     }
