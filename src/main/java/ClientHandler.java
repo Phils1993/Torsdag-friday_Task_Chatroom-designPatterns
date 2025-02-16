@@ -132,6 +132,7 @@ public class ClientHandler implements Runnable, IObserver {
     @Override
     public void help() {
         out.println("You are asking for HELP?? THIS is my help: ALT+F4");
+        out.println("Available commands: #JOIN, #MESSAGE, #PRIVATE, #LEAVE, #STOPSERVER, #GETLIST");
     }
 
     @Override
