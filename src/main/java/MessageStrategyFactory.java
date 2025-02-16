@@ -9,6 +9,7 @@ public class MessageStrategyFactory {
         strategies.put("#LEAVE",new LeaveStrategy());
         strategies.put("#PRIVATE", new PrivateMsgStrategy());
         strategies.put("#COLORMESSAGE" , new ColerStrategy());
+        strategies.put("STOPSERVER", new StopServerStrategy());
     }
     public static  IMessageStrategy getStrategy(String strategy) {
         return strategies.getOrDefault(strategy, new IMessageStrategy() {

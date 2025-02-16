@@ -32,7 +32,7 @@ public class ChatServerDemo implements IOberserverable {
         new ChatServerDemo().startServer(12345);
     }
 
-    private static volatile IOberserverable server = getInstance();
+    static volatile IOberserverable server = getInstance();
 
     public void startServer(int port) {
         try {
